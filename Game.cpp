@@ -1,4 +1,11 @@
 #include "Game.h"
+#include "Sprite.h"
+
+
+
+SDL_Texture* playerTexture = NULL;
+SDL_Rect     srcRect, dstRect;
+
 
 Game::Game()
 {}
@@ -34,6 +41,12 @@ void Game::init(const char* title, int xpos, int ypos, int screenWidth, int scre
 
 				SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
 				isRunning = true;
+
+				Sprite player;
+				playerTexture = player.getPlayerTexture("sprites/player.png", gRenderer);
+				if (playerTexture == NULL) {
+					printf("player texture could not be created, ERR: %s\n", IMG_GetError());
+				}
 			}
 		}
 	}	
@@ -58,6 +71,10 @@ void Game::handleEvents()
 
 void Game::update()
 {
+	
+	dstRect.w =	64;
+	dstRect.h = 64;
+
 }
 
 
@@ -74,6 +91,14 @@ void Game::render()
 	* add stuff to render
 	* 
 	*/
+
+
+	SDL_RenderCopy(gRenderer, playerTexture, NULL, &dstRect);
+
+
+
+
+
 
 	SDL_RenderPresent(gRenderer);
 }

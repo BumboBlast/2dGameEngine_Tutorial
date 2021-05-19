@@ -2,6 +2,7 @@
 #define GAME_H
 #pragma once
 #include <SDL.h>
+#include <SDL_image.h>
 #include "StandardForward.h"
 
 
