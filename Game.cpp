@@ -72,8 +72,12 @@ void Game::handleEvents()
 void Game::update()
 {
 	
+	debugCounter++;
+
 	dstRect.w =	64;
 	dstRect.h = 64;
+
+	dstRect.x = debugCounter;
 
 }
 

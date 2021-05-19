@@ -5,3 +5,7 @@
 			
 			- First thing, when creating textures, need to create a surface.
 			- Rendering:  Using the painter's algorithm (first thing "painted" in background)
+
+19May:	Capping Framerate
+
+			- we will get our current running time when we first start the frame, 

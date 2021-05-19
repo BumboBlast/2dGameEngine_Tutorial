@@ -26,6 +26,8 @@ private:
 	bool isRunning;
 	SDL_Window*		gWindow		= NULL;
 	SDL_Renderer*	gRenderer	= NULL;
+
+	int debugCounter = 0;
 };
 
 
