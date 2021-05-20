@@ -1,11 +1,8 @@
 #include "Game.h"
 #include "TextureManager.h"
+#include "GameObject.h"
 
-
-
-SDL_Texture* playerTexture = NULL;
-SDL_Rect     srcRect, dstRect;
-
+GameObject* player;
 
 Game::Game()
 {}
@@ -42,10 +39,7 @@ void Game::init(const char* title, int xpos, int ypos, int screenWidth, int scre
 				SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
 				isRunning = true;
 
-				playerTexture = TextureManager::loadTexture("sprites/player.png", gRenderer);
-				if (playerTexture == NULL) {
-					printf("Player texture could not be loaded, ERR: %s\n", SDL_GetError());
-				}
+				player = new GameObject("sprites/player.png", gRenderer);
 			}
 		}
 	}	
@@ -70,15 +64,7 @@ void Game::handleEvents()
 
 void Game::update()
 {
-	
-	debugCounter++;
-
-	dstRect.w =	64;
-	dstRect.h = 64;
-
-	dstRect.x = debugCounter;
-
-
+	player->update();
 }
 
 
@@ -97,14 +83,11 @@ void Game::render()
 	*/
 
 
-	SDL_RenderCopy(gRenderer, playerTexture, NULL, &dstRect);
+	player->render();
 
 
 
-
-
-
-	SDL_RenderPresent(gRenderer);
+	SDL_RenderPresent(gRenderer);			//this function is like SDL_UpdateWindowSurface or whatever its called
 }
 
 
