@@ -9,3 +9,5 @@
 19May:	Capping Framerate
 
 			- we will get our current running time when we first start the frame, 
+
+20May:	Texture Manager, to make loading textures much easier

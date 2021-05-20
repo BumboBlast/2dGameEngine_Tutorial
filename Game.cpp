@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "Sprite.h"
+#include "TextureManager.h"
 
 
 
@@ -42,10 +42,9 @@ void Game::init(const char* title, int xpos, int ypos, int screenWidth, int scre
 				SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
 				isRunning = true;
 
-				Sprite player;
-				playerTexture = player.getPlayerTexture("sprites/player.png", gRenderer);
+				playerTexture = TextureManager::loadTexture("sprites/player.png", gRenderer);
 				if (playerTexture == NULL) {
-					printf("player texture could not be created, ERR: %s\n", IMG_GetError());
+					printf("Player texture could not be loaded, ERR: %s\n", SDL_GetError());
 				}
 			}
 		}
@@ -78,6 +77,7 @@ void Game::update()
 	dstRect.h = 64;
 
 	dstRect.x = debugCounter;
+
 
 }
 

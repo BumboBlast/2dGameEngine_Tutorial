@@ -10,12 +10,11 @@
 class Sprite {
 private:
 
-	
-	SDL_Texture* playerTexture = NULL;
+
 
 public:
 	
-	SDL_Texture* getPlayerTexture(std::string filepath, SDL_Renderer* gRenderer);
+
 	
 };
 
