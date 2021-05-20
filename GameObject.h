@@ -11,7 +11,7 @@ class GameObject {
 
 
 public:
-	GameObject(const char* texturesheet, SDL_Renderer* objectRenderer);
+	GameObject(const char* texturesheet, SDL_Renderer* objectRenderer, int initialposition_x, int initialposition_y);
 	~GameObject();
 
 

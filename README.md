@@ -11,7 +11,8 @@
 			- we will get our current running time when we first start the frame, 
 
 20May:	Texture Manager, to make loading textures much easier
+
 20May:	Created GameObject Class!!
 
-			- rather than keep updating all objects in the main, game class. Each object will
-				have its own updates with its own specific behaviours.
+			- Rather than keep updating all objects in the main, game class,
+			- Each object will have its own updates with its own specific behaviours.

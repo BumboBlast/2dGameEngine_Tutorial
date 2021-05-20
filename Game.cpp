@@ -3,6 +3,7 @@
 #include "GameObject.h"
 
 GameObject* player;
+GameObject* enemy;
 
 Game::Game()
 {}
@@ -39,7 +40,8 @@ void Game::init(const char* title, int xpos, int ypos, int screenWidth, int scre
 				SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
 				isRunning = true;
 
-				player = new GameObject("sprites/player.png", gRenderer);
+				player = new GameObject("sprites/player.png", gRenderer, 0, 0);
+				enemy = new GameObject("sprites/enemy.png", gRenderer, 50, 50);
 			}
 		}
 	}	
@@ -65,6 +67,7 @@ void Game::handleEvents()
 void Game::update()
 {
 	player->update();
+	enemy->update();
 }
 
 
@@ -84,6 +87,7 @@ void Game::render()
 
 
 	player->render();
+	enemy->render();
 
 
 

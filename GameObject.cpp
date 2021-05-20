@@ -1,8 +1,10 @@
 #include "GameObject.h"
 #include "TextureManager.h"
 
-
-GameObject::GameObject(const char* texturesheet, SDL_Renderer* objectRenderer)
+/*
+* this instantiates a new sprite onto the screen, with a starting position
+*/
+GameObject::GameObject(const char* texturesheet, SDL_Renderer* objectRenderer, int initialposition_x, int initialposition_y)
 {
 	/*
 	* when we make a copy of our game object, we need to assign the renderer and our texture. Renderer first
@@ -10,13 +12,18 @@ GameObject::GameObject(const char* texturesheet, SDL_Renderer* objectRenderer)
 
 	gRenderer		= objectRenderer;
 	objectTexture	= TextureManager::loadTexture(texturesheet, objectRenderer);
+
+	xpos = initialposition_x;
+	ypos = initialposition_y;
 }
 
 
 void GameObject::update()
 {
-	xpos = 0;
-	ypos = 0;
+	xpos++;
+	ypos++;
+
+
 
 	srcRect.h = 32;
 	srcRect.w = 32;
