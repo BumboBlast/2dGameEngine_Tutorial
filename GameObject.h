@@ -2,7 +2,7 @@
 #define GAMEOBJECT_H
 #pragma once
 
-#include <SDL.h>
+#include "Game.h"
 
 
 
@@ -11,7 +11,7 @@ class GameObject {
 
 
 public:
-	GameObject(const char* texturesheet, SDL_Renderer* objectRenderer, int initialposition_x, int initialposition_y);
+	GameObject(const char* texturesheet, int initialposition_x, int initialposition_y);
 	~GameObject();
 
 
@@ -27,7 +27,6 @@ private:
 	SDL_Texture* objectTexture;
 	SDL_Rect srcRect, dstRect;
 
-	SDL_Renderer* gRenderer;
 
 
 };

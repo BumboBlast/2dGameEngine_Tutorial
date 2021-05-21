@@ -4,14 +4,13 @@
 /*
 * this instantiates a new sprite onto the screen, with a starting position
 */
-GameObject::GameObject(const char* texturesheet, SDL_Renderer* objectRenderer, int initialposition_x, int initialposition_y)
+GameObject::GameObject(const char* texturesheet, int initialposition_x, int initialposition_y)
 {
 	/*
 	* when we make a copy of our game object, we need to assign the renderer and our texture. Renderer first
 	*/
 
-	gRenderer		= objectRenderer;
-	objectTexture	= TextureManager::loadTexture(texturesheet, objectRenderer);
+	objectTexture	= TextureManager::loadTexture(texturesheet);
 
 	xpos = initialposition_x;
 	ypos = initialposition_y;
@@ -39,5 +38,5 @@ void GameObject::update()
 void GameObject::render()
 {
 
-	SDL_RenderCopy(gRenderer, objectTexture, &srcRect, &dstRect);	//this "paints" part of the texture we are looking at to the scene.
+	SDL_RenderCopy(Game::gRenderer, objectTexture, &srcRect, &dstRect);	//this "paints" part of the texture we are looking at to the scene.
 }

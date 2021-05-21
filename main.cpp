@@ -3,8 +3,8 @@
 
 
 
-const int SCREEN_WIDTH	= 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH	= 800;
+const int SCREEN_HEIGHT = 640;
 
 const int FPS			= 60;				// "we like 60 because its closest to the refresh rate on our monitors"
 const int FRAME_DELAY	= 1000 / FPS;		// time inbetween frames?? or "how long a frame will take"
