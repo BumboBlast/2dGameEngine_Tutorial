@@ -48,7 +48,7 @@ NEW JARGON I LEAREND!
 
 			constexpr:			compile-time optimization. Telling the compiler that this can be executed at run-time.
 
-			polymorphism:		important concept to OOP! Idk!? "a man can be a father, a husband, an employee, etc" at the same time.
+			polymorphism:			important concept to OOP! Idk!? "a man can be a father, a husband, an employee, etc" at the same time.
 
 			unique_ptr:			handles the garbage collection of the object that is being pointed to.
 								- automatically destorys (using deleter) upon object destruction.
@@ -56,3 +56,8 @@ NEW JARGON I LEAREND!
 
 			putting const infront of a block in the function declaration:
 								I guess another optimizaiton? Telling the compiler that this block is not mutable, so it does funny in the memory?
+
+22May	Finished entity class?? I guess?? Next I can create some components?
+
+			- idk wtf is happening. seriously i do not understand this at all
+			- I have an entity class to manage components, now i need a manager class to keep track of entities!

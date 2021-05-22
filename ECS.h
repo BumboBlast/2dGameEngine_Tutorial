@@ -27,18 +27,40 @@ class Entity;
 
 using ComponentID = std::size_t;
 
-inline ComponentID getComponentID()
+inline ComponentID getComponentTypeID()
 {
 	static ComponentID lastID = 0;
 	return lastID++;
 }
 
-template <typename T> inline ComponentID getComponentID() noexcept
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* dont understand this at all 
+*/
+template <typename T> inline ComponentID getComponentTypeID() noexcept
 {
 
-	static ComponentID typeID = getComponentID();					//will generate a new lastID for us, and put it in typeID
+	static ComponentID typeID = getComponentTypeID();					//will generate a new lastID for us, and put it in typeID
 	return typeID;
 }
+
+
+
+
+
 
 
 
@@ -58,12 +80,18 @@ constexpr std::size_t maxComponents = 32;
 *	So the bitset is an optimization to store/compare components (as booleans?)
 *	because boolean AND and OR is pretty nice!
 */
-using ComponentBitSet = std::bitset<maxComponents>;
+using ComponentBitset = std::bitset<maxComponents>;
 
 /*
 * stores the componenets?? 
 */
 using ComponentArray = std::array<Component*, maxComponents>;
+
+
+
+
+
+
 
 
 
@@ -128,6 +156,10 @@ public:
 
 
 
+
+
+
+
 class Entity {
 
 private:
@@ -140,7 +172,7 @@ private:
 
 	//"Then well have a ComponentArray, which we'll call componenetArray."
 	ComponentArray componentArray;
-	ComponentBitSet componentBitset;
+	ComponentBitset componentBitset;
 
 public:
 
@@ -164,6 +196,119 @@ public:
 	* we can call the entity destory function from the component
 	*/
 	void destory() { active = false; }
+
+
+
+
+
+
+
+	/* I dont understand this at all either
+	*/
+	template<typename T> bool hasComponenet() const
+	{
+		return componentBitset[getComponentTypeID<T>];
+	}
+
+
+	/*wtf is going on
+	*/
+	template<typename T, typename... TArgs>
+	T& addComponenet(TArgs&&... mArgs)
+	{
+		T* c(new T(std::forward<TArgs>(mArgs)...));
+		c->entity = this;
+		std::unique_ptr<Component> uPtr{ c };
+		components.emplace_back(std::move(uPtr));
+
+		componentArray[getComponentTypeID<T>()] = c;
+		componentBitset[getComponentTypeID<T>()] = true;
+
+		c->init();
+		
+
+		return *c;
+	}
+
+
+
+
+	template<typename T> T& getComponent() const
+	{
+		auto ptr(componentArray[getComponentTypeID<T>()]);
+		return *static_cast<T*>(ptr);
+	}
+
+
+	/* all of this , so that i can do this:
+	* 
+	*	/gameobject/.getComponent</positioncomponent/>().setXpos(25);
+	*/
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Manager {
+private:
+	std::vector<std::unique_ptr<Entity>> entities;
+
+public:
+	/*use the manager to update all of our entities*/
+	void update()
+	{
+		for (auto& e : entities) {e->update();}
+	}
+
+	void draw()
+	{
+		for (auto& e : entities) {e->draw();}
+	}
+
+
+
+	/* bro wtf! */
+	void refresh()
+	{
+		entities.erase(std::remove_if(std::begin(entities), std::end(entities),
+			[](const std::unique_ptr<Entity>& mEntity)
+			{
+				return !mEntity->isActive();
+			}),
+			std::end(entities));
+	}
+
+
+	Entity& addEntity()
+	{
+		Entity* e = new Entity();
+		std::unique_ptr<Entity> uPtr{ e };
+
+		entities.emplace_back(std::move(uPtr));
+
+		return *e;
+	}
 };
 
 
