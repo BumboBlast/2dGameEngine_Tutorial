@@ -61,3 +61,8 @@ NEW JARGON I LEAREND!
 
 			- idk wtf is happening. seriously i do not understand this at all
 			- I have an entity class to manage components, now i need a manager class to keep track of entities!
+
+23May	"So what we can do now, is start creating some of our components!"
+		Added a position component
+
+			- really nice to finally be able to understand what's happening again.
